@@ -23,6 +23,8 @@ import numpy as np
 
 from ..sixs_exceptions import ParameterError
 
+import logging
+logger = logging.getLogger(__name__)
 
 class Angles:
     @classmethod
@@ -85,7 +87,7 @@ class Angles:
         else:
             pool = Pool(n)
 
-        print("Running for many angles - this may take a long time")
+        logger.debug("Running for many angles - this may take a long time")
         results = pool.map(f, itertools.product(azimuths, zeniths))
         pool.close()
         pool.join()
@@ -326,7 +328,7 @@ class Angles:
         else:
             pool = Pool(n)
 
-        print("Running for many angles - this may take a long time")
+        logger.info("Running for many angles - this may take a long time")
         results = pool.map(f, zip(all_zeniths, all_azimuths))
         pool.close()
         pool.join()

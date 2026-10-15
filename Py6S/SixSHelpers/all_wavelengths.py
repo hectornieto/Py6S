@@ -21,7 +21,8 @@ import sys
 import numpy as np
 
 from Py6S.Params import PredefinedWavelengths, Wavelength
-
+import logging
+logger = logging.getLogger(__name__)
 
 class Wavelengths:
 
@@ -66,7 +67,7 @@ class Wavelengths:
             a = copy.deepcopy(s)
             a.wavelength = Wavelength(wv)
             if verbose:
-                print(wv)
+                logger.info(wv)
             a.run()
             if output_name is None:
                 return a.outputs
@@ -82,11 +83,11 @@ class Wavelengths:
             pool = Pool(n)
 
         if verbose:
-            print("wavelengths pass:")
-            print(wavelengths)
-            print(type(wavelengths))
+            logger.info("wavelengths pass:")
+            logger.info(wavelengths)
+            logger.info(type(wavelengths))
 
-        print("Running for many wavelengths - this may take a long time")
+        logger.debug("Running for many wavelengths - this may take a long time")
         results = pool.map(f, wavelengths)
 
         pool.close()

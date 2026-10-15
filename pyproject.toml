@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Py6S"
+version = "1.9.3"
+description = "A wrapper for the 6S Radiative Transfer Model to make it easy to run simulations with a variety of input parameters, and to produce outputs in an easily processable form."
+readme = "README.rst"
+requires-python = ">=3"
+license = { text = "GPL" }
+authors = [
+    { name = "Robin Wilson", email = "robin@rtwilson.com" },
+]
+dependencies = [
+    "pysolar>=0.9",
+    "scipy",
+    "python-dateutil",
+    "mock"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "http://py6s.rtwilson.com/"
+
+[tool.setuptools]
+packages = ["Py6S", "Py6S.Params", "Py6S.SixSHelpers"]

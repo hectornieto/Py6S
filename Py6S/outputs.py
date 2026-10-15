@@ -19,6 +19,8 @@ import sys
 
 from .sixs_exceptions import OutputParsingError
 
+import logging
+logger = logging.getLogger(__name__)
 
 class Outputs(object):
 
@@ -66,7 +68,7 @@ class Outputs(object):
             import platform
 
             if platform.system() != "Darwin":
-                print(stderr)
+                logger.error(stderr)
                 raise OutputParsingError(
                     "6S returned an error (shown above) - check for invalid parameter inputs"
                 )
@@ -76,7 +78,7 @@ class Outputs(object):
                 and (not ("IEEE_DENORMAL" in stderr))
                 and (not ("IEEE_UNDERFLOW_FLAG" in stderr))
             ):  # Ignoring error on MacOS IEEE_INVALID_FLAG
-                print(stderr)
+                logger.error(stderr)
                 raise OutputParsingError(
                     "6S returned an error (shown above) - check for invalid parameter inputs"
                 )
@@ -131,7 +133,7 @@ class Outputs(object):
         # There should be hundreds of lines for a full 6S run - so if there are
         # less than 10 then it suggests something has gone seriously wrong
         if len(lines) < 10:
-            print(fulltext)
+            logger.error(fulltext)
             raise OutputParsingError(
                 "6S didn't return a full output. See raw 6S output above for "
                 "more information and check for invalid parameter inputs"
